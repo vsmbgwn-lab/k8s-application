@@ -11,7 +11,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: acr-connection
+  dockerRegistryServiceConnection: acr-docker-connection
   imageRepository: 'ksapplication'
   containerRegistry: 'ghostauacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
@@ -63,7 +63,7 @@ stages:
             inputs:
               action: createSecret
               secretName: $(imagePullSecret)
-              dockerRegistryEndpoint: acr-connection
+              dockerRegistryEndpoint: acr-docker-connection
               
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
